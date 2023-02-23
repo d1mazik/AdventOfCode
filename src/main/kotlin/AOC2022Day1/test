@@ -1,0 +1,31 @@
+
+import java.io.File
+
+fun readFile(path: String): String {
+    val file = File(path)
+    return file.readText()
+}
+
+fun main() {
+    val input = readFile("src/main/kotlin/AOC2022_1.txt")
+    val elfCalories = input.trim().split("\n\n").map { elfCalories ->
+        elfCalories.split("\n").map { it.toInt() }.sum()
+    }
+    val maxCalories = elfCalories.maxOrNull() ?: 0
+    println("Part 1: The Elf carrying the most calories is carrying a total of $maxCalories calories.")
+
+    val topThreeCalories = elfCalories.sortedDescending().take(3).sum()
+    println("Part 2: The top three Elves carrying the most calories are carrying a total of $topThreeCalories calories.")
+}
+
+import java.io.File
+
+fun main() {
+    val input = File("src/main/kotlin/AOC2022_1.txt").readText()
+    val elfCalories = input.split("\n\n").map { it.lines().map(String::toInt).sum() }
+    val maxCalories = elfCalories.maxOrNull() ?: 0
+    println("Part 1: The Elf carrying the most calories is carrying a total of $maxCalories calories.")
+
+    val topThreeCalories = elfCalories.sortedDescending().take(3).sum()
+    println("Part 2: The top three Elves carrying the most calories are carrying a total of $topThreeCalories calories.")
+}
